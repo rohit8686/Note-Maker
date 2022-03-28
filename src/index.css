@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap");
+
+/* Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Color Palette */
+
+.light {
+  --bg-color: #fff;
+  --text-color: #000;
+  --primary-color: #6c63ff;
+  --white: #fff;
+  --black: #000;
+}
+.dark {
+  --bg-color: #000;
+  --text-color: #fff;
+  --primary-color: #6c63ff;
+  --white: #fff;
+  --black: #000;
+}
+
+/* General Styling */
+
+html {
+  font-size: 62.5%;
+}
+
+.App {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Utilities */
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-center {
+  text-align: center;
+}
+.m-1 {
+  margin: 1rem;
+}
+.p-1 {
+  padding: 1rem;
+}
+.mt-1 {
+  margin-top: 1rem;
+}
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.my-1 {
+  margin: 1rem 0;
+}
+.mx-auto {
+  margin: 0 auto;
+}
+.pt-1 {
+  padding-top: 1rem;
+}
+.pb-1 {
+  padding-bottom: 1rem;
+}
+.py-1 {
+  padding: 1rem 0;
+}
+.px-1 {
+  padding: 0 1rem;
+}
+@media screen and (min-width: 600px) {
+  html {
+    font-size: 80%;
+  }
+}
+@media screen and (min-width: 900px) {
+  html {
+    font-size: 100%;
+  }
+}

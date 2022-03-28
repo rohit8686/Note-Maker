@@ -1,0 +1,13 @@
+.navbar {
+  padding: 1rem;
+}
+.main-title {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+.space-between {
+  justify-content: space-between;
+}
+.icon {
+  cursor: pointer;
+}
