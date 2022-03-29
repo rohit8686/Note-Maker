@@ -1,0 +1,51 @@
+.hero-img {
+  max-width: 100%;
+  height: 50vh;
+  display: block;
+}
+.hero-text {
+  width: 80%;
+}
+.hero-desc {
+  width: 80%;
+  font-size: 1.5rem;
+}
+.colored-text {
+  color: var(--primary-color);
+}
+.justify {
+  text-align: justify;
+}
+.btn {
+  display: block;
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+}
+.join-btn {
+  background-color: var(--primary-color);
+  cursor: pointer;
+}
+.signin-btn {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+@media screen and (min-width: 900px) {
+  html {
+    font-size: 100%;
+  }
+  .hero-img {
+    height: 40vh;
+  }
+  .hero-desc {
+    width: 60%;
+  }
+  .join-btn {
+    font-size: 1.3rem;
+  }
+  .signin-btn {
+    font-size: 1.3rem;
+  }
+}
