@@ -16,13 +16,7 @@
 .justify {
   text-align: justify;
 }
-.btn {
-  display: block;
-  color: var(--white);
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.5rem;
-}
+
 .join-btn {
   background-color: var(--primary-color);
   cursor: pointer;

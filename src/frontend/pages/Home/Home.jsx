@@ -1,6 +1,7 @@
 import React from "react";
 import hero from "../../images/hero.svg";
 import "./homepage.css";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
@@ -13,8 +14,12 @@ export const Home = () => {
         Manage your daily tasks and workflow in a modern way and boost your
         efficiency without any efforts.
       </p>
-      <button className="flex btn join-btn mx-auto">Join Now</button>
-      <p className="signin-btn flex p-1">Already have an account ?</p>
+      <Link to="/signup" className="link">
+        <button className="flex btn join-btn mx-auto">Join Now</button>
+      </Link>
+      <Link to="/login" className="link">
+        <p className="signin-btn flex p-1">Already have an account ?</p>
+      </Link>
     </div>
   );
 };

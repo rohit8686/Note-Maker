@@ -4,6 +4,7 @@
 .main-title {
   font-size: 2.5rem;
   cursor: pointer;
+  color: var(--text-color);
 }
 .space-between {
   justify-content: space-between;

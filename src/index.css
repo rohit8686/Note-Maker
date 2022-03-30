@@ -5,6 +5,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 /* Color Palette */
@@ -15,6 +16,7 @@
   --primary-color: #6c63ff;
   --white: #fff;
   --black: #000;
+  --error: #f87171;
 }
 .dark {
   --bg-color: #000;
@@ -22,6 +24,7 @@
   --primary-color: #6c63ff;
   --white: #fff;
   --black: #000;
+  --error: #dc2626;
 }
 
 /* General Styling */
@@ -35,6 +38,17 @@ html {
   color: var(--text-color);
   min-height: 100vh;
   font-family: "Roboto", sans-serif;
+}
+.link {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+.btn {
+  display: block;
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
 }
 
 /* Utilities */

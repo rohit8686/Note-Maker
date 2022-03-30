@@ -1,0 +1,41 @@
+.login-card {
+  color: var(--bg-color);
+  background-color: var(--text-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 20rem;
+}
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+}
+.full-width {
+  width: 100%;
+}
+.login-btn {
+  background-color: var(--primary-color);
+  cursor: pointer;
+  font-size: 1rem;
+}
+.outline-btn {
+  background-color: none;
+  border: 2px solid var(--primary-color);
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.outline-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+.input-error {
+  color: var(--error);
+}
+.flex-start {
+  justify-content: flex-start;
+}
+.small-gap {
+  gap: 0.4rem;
+}
