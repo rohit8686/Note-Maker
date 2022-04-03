@@ -1,5 +1,5 @@
 import axios from "axios";
-import { React, createContext, useContext, useReducer, useState } from "react";
+import { React, createContext, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { toastContainer } from "../Toast/toast";
 import { useAuth } from "./auth-context";
@@ -97,6 +97,8 @@ function EditProvider({ children }) {
           isEdit: false,
           editNotes: editInitialState.editNotes,
         };
+      default:
+        return { ...editState };
     }
   }
   const [editState, editDispatch] = useReducer(editReducerFn, editInitialState);

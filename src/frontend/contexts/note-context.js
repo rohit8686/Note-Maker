@@ -62,6 +62,8 @@ function NoteProvider({ children }) {
         return { ...noteState, pinned: !noteState.pinned };
       case "CLEAR_FORM":
         return { ...noteInitialState };
+      default:
+        return { ...noteState };
     }
   }
 

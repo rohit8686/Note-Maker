@@ -12,7 +12,7 @@ export const NoteHome = () => {
     if (!localStorage.getItem("userToken")) {
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="p-1 notehome-flex space-between">
