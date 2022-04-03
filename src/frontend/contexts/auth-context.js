@@ -37,7 +37,7 @@ function AuthProvider({ children }) {
           payload: { foundUser, encodedToken },
         });
         authDispatch({ type: "RESET_FORM" });
-        navigate("/");
+        navigate("/notehome");
       } else if (status === 201) {
         authDispatch({ type: "ERROR", payload: "Incorrect password" });
         setTimeout(() => authDispatch({ type: "ERROR", payload: "" }), 5000);
@@ -74,7 +74,7 @@ function AuthProvider({ children }) {
           payload: { foundUser, encodedToken },
         });
         authDispatch({ type: "RESET_FORM" });
-        navigate("/");
+        navigate("/notehome");
       }
     } catch (e) {
       console.log("Signup error is ", e);

@@ -1,0 +1,70 @@
+.note {
+  border-radius: 5px;
+  background-color: var(--white);
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
+  width: 80%;
+}
+.note-title,
+.note-body,.note-label {
+  border: none;
+  background-color: inherit;
+  font-family: "Roboto",
+  sans-serif;
+  font-size: 1rem;
+}
+.note-body {
+  height: 5rem;
+}
+.note-title::placeholder,
+.note-body::placeholder,
+.note-label::placeholder {
+  letter-spacing: 1px;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  color: var(--black);
+}
+.note-title{
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.note-title:focus,
+.note-body:focus,
+.note-label:focus {
+  outline: none;
+}
+.note-btn {
+  letter-spacing: 1px;
+}
+.label {
+  background-color: var(--white);
+  width: fit-content;
+  padding: 0.2rem;
+  color: var(--black);
+  border-radius: 0.2rem;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+.text-capitalize{
+  text-transform: capitalize;
+}
+.text-color {
+  color: var(--black);
+}
+.flex-end {
+  justify-content: flex-end;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.p-0 {
+  padding: 0;
+}
+:disabled{
+  cursor: not-allowed;
+}
+@media screen and (min-width:650px) {
+  .small-note {
+    width: 40%;
+  }
+}

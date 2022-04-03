@@ -3,6 +3,7 @@ import { useTheme } from "./frontend/contexts/theme-context";
 import { Navbar } from "./frontend/Navbar/Navbar";
 import { Home } from "./frontend/pages/Home/Home";
 import { Login } from "./frontend/pages/Login/Login";
+import { NoteHome } from "./frontend/pages/Notes/NoteHome/NoteHome";
 import { Signup } from "./frontend/pages/Signup/Signup";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" exact element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/notehome" element={<NoteHome />} />
       </Routes>
     </div>
   );

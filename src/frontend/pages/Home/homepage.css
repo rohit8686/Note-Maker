@@ -16,11 +16,6 @@
 .justify {
   text-align: justify;
 }
-
-.join-btn {
-  background-color: var(--primary-color);
-  cursor: pointer;
-}
 .signin-btn {
   color: var(--primary-color);
   font-size: 1.3rem;

@@ -41,14 +41,20 @@ html {
 }
 .link {
   text-decoration: none;
-  color: var(--primary-color);
+  color: var(--text-color);
 }
 .btn {
-  display: block;
   color: var(--white);
-  padding: 0.5rem 1rem;
-  border: none;
+  padding: 0.5rem;
+  border: 2px solid var(--primary-color);
+  background-color: var(--primary-color);
   border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.btn:hover {
+  background: var(--white);
+  color: var(--primary-color);
 }
 
 /* Utilities */
@@ -57,9 +63,25 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+}
+.gap {
+  gap: 0.5rem;
+}
+.no-gap {
+  gap: 0;
+}
+.hide {
+  display: none;
 }
 .text-center {
   text-align: center;
+}
+textarea {
+  resize: none;
+}
+.icon{
+  font-size: 2rem;
 }
 .m-1 {
   margin: 1rem;
@@ -91,7 +113,10 @@ html {
 .px-1 {
   padding: 0 1rem;
 }
-@media screen and (min-width: 600px) {
+.pl-1 {
+  padding-left: 1rem;
+}
+@media screen and (min-width: 650px) {
   html {
     font-size: 80%;
   }

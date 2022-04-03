@@ -63,7 +63,7 @@ export function Signup() {
           </div>
           <button className="btn login-btn full-width">Create Account</button>
           <h3 className="flex pt-1 input-error">{authState.errorMsg}</h3>
-          <Link to="/login" className="link">
+          <Link to="/login" className="link login-link">
             <div className="flex small-gap">
               Already have an account
               <span className="material-icons-outlined icon chevron-right">
