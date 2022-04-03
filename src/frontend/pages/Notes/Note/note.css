@@ -26,6 +26,7 @@
 }
 .note-title{
   font-size: 1.3rem;
+  width:80%;
   font-weight: bold;
 }
 .note-title:focus,
