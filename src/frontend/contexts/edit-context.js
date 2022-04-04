@@ -14,7 +14,7 @@ const year = new Date().getFullYear();
 
 function EditProvider({ children }) {
   const navigate = useNavigate();
-  const { notes, setNotes } = useNote();
+  const { setNotes } = useNote();
   const {
     authState: { encodedToken },
   } = useAuth();
@@ -40,6 +40,7 @@ function EditProvider({ children }) {
           { note: editState.editNotes },
           { headers: { authorization: encodedToken } }
         );
+        console.log("update archive note is", res);
         setNotes(res.data.notes);
         editDispatch({ type: "UPDATED_NOTE" });
         localStorage.setItem("userData", JSON.stringify(res.data));
@@ -84,11 +85,14 @@ function EditProvider({ children }) {
           },
         };
       case "EDIT_NOTE":
-        const editData = notes.find((note) => note._id === action.payload);
+        const { _id, notes, archiveData } = action.payload;
+        const editData =
+          (notes && notes.find((note) => note._id === _id)) ||
+          (archiveData && archiveData.find((note) => note._id === _id));
         return {
           ...editState,
           isEdit: true,
-          editId: action.payload,
+          editId: _id,
           editNotes: editData,
         };
       case "UPDATED_NOTE":

@@ -1,6 +1,9 @@
 .aside{
     display: none;
 }
+.pointer{
+    cursor: pointer;
+}
 @media screen and (min-width: 650px) {
     .aside {
         display: block;

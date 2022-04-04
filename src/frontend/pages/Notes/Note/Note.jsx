@@ -1,4 +1,5 @@
 import { ToastContainer } from "react-toastify";
+import { useArchive } from "../../../contexts/archive-context";
 import { useEdit } from "../../../contexts/edit-context";
 import { useNote } from "../../../contexts/note-context";
 import "./note.css";
@@ -15,6 +16,7 @@ export const Note = () => {
     editDispatch,
     updateNote,
   } = useEdit();
+  const { addToArchive } = useArchive();
 
   const addedNotes = notes.reduce(
     (noteTypes, note) =>
@@ -199,7 +201,10 @@ export const Note = () => {
                                 : ""
                             }
                           />
-                          <span className="material-icons-outlined icon">
+                          <span
+                            className="material-icons-outlined icon"
+                            onClick={() => addToArchive(_id)}
+                          >
                             archive
                           </span>
                           <span className="material-icons-outlined icon">
@@ -210,7 +215,10 @@ export const Note = () => {
                               isEdit && _id === editId ? "hide" : ""
                             }`}
                             onClick={() =>
-                              editDispatch({ type: "EDIT_NOTE", payload: _id })
+                              editDispatch({
+                                type: "EDIT_NOTE",
+                                payload: { _id, notes },
+                              })
                             }
                           >
                             Edit
