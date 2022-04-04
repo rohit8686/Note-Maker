@@ -40,7 +40,6 @@ function EditProvider({ children }) {
           { note: editState.editNotes },
           { headers: { authorization: encodedToken } }
         );
-        console.log("update archive note is", res);
         setNotes(res.data.notes);
         editDispatch({ type: "UPDATED_NOTE" });
         localStorage.setItem("userData", JSON.stringify(res.data));
