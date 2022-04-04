@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Aside } from "../Aside/Aside";
 import { Archive } from "../Archive/Archive";
 import { useAsideSelected } from "../../../contexts/aside-selected-context";
+import { Labels } from "../Labels/Labels";
 
 export const NoteHome = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ export const NoteHome = () => {
         <Search />
         {asideSelected === "note-home" && <Note />}
         {asideSelected === "archive" && <Archive />}
+        {asideSelected === "label" && <Labels />}
       </div>
     </div>
   );
