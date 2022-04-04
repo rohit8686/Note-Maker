@@ -2,6 +2,7 @@ import { ToastContainer } from "react-toastify";
 import { useArchive } from "../../../contexts/archive-context";
 import { useEdit } from "../../../contexts/edit-context";
 import { useNote } from "../../../contexts/note-context";
+import { useTrash } from "../../../contexts/trash-context";
 import "./note.css";
 
 export const Note = () => {
@@ -17,6 +18,7 @@ export const Note = () => {
     updateNote,
   } = useEdit();
   const { addToArchive } = useArchive();
+  const { moveToTrash } = useTrash();
 
   const addedNotes = notes.reduce(
     (noteTypes, note) =>
@@ -207,7 +209,10 @@ export const Note = () => {
                           >
                             archive
                           </span>
-                          <span className="material-icons-outlined icon">
+                          <span
+                            className="material-icons-outlined icon"
+                            onClick={() => moveToTrash(_id)}
+                          >
                             delete
                           </span>
                           <button
