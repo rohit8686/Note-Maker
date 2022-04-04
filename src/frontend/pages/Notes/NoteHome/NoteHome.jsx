@@ -4,10 +4,12 @@ import { Search } from "../Search/Search";
 import "./notehome.css";
 import { useNavigate } from "react-router-dom";
 import { Aside } from "../Aside/Aside";
+import { Archive } from "../Archive/Archive";
+import { useAsideSelected } from "../../../contexts/aside-selected-context";
 
 export const NoteHome = () => {
   const navigate = useNavigate();
-
+  const { asideSelected } = useAsideSelected();
   useEffect(() => {
     if (!localStorage.getItem("userToken")) {
       navigate("/login");
@@ -19,7 +21,8 @@ export const NoteHome = () => {
       <Aside />
       <div className="note-width">
         <Search />
-        <Note />
+        {asideSelected === "note-home" && <Note />}
+        {asideSelected === "archive" && <Archive />}
       </div>
     </div>
   );
