@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../../contexts/auth-context";
 import { Link } from "react-router-dom";
 import "./loginpage.css";
+import { ToastContainer } from "react-toastify";
 
 export const Login = () => {
   const { authState, authDispatch, login } = useAuth();
@@ -66,7 +67,7 @@ export const Login = () => {
             <label htmlFor="checkbox">Remember me</label>
           </div>
           <div className="pb-1">
-            <Link to="/login" className="link">
+            <Link to="/login" className="link forgot-password-link">
               Forgot your Password ?
             </Link>
           </div>
@@ -79,7 +80,7 @@ export const Login = () => {
             Login with test credentials
           </p>
           <h3 className="flex pt-1 input-error">{authState.errorMsg}</h3>
-          <Link to="/signup" className="link">
+          <Link to="/signup" className="link signup-link">
             <div className="flex">
               Create new Account
               <span className="material-icons-outlined icon chevron-right">
@@ -89,6 +90,7 @@ export const Login = () => {
           </Link>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -1,0 +1,17 @@
+.search-input {
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
+  background-color: var(--white);
+  border-radius: 5px;
+  width: 80%;
+}
+.search {
+  border: none;
+  background: none;
+  flex-grow: 1;
+}
+.search:focus {
+  outline: none;
+}
+.search-icon {
+  color: var(--black);
+}
