@@ -1,6 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import { useArchive } from "../../../contexts/archive-context";
 import { useEdit } from "../../../contexts/edit-context";
+import { useFilter } from "../../../contexts/filters-context";
 import { useNote } from "../../../contexts/note-context";
 import { useTrash } from "../../../contexts/trash-context";
 import "./note.css";
@@ -12,6 +13,7 @@ export const Note = () => {
     addNote,
     notes,
   } = useNote();
+  const { filteredData } = useFilter();
   const {
     editState: { editId, editNotes, isEdit },
     editDispatch,
@@ -20,7 +22,7 @@ export const Note = () => {
   const { addToArchive } = useArchive();
   const { moveToTrash } = useTrash();
 
-  const addedNotes = notes.reduce(
+  const addedNotes = filteredData.reduce(
     (noteTypes, note) =>
       note.pinned
         ? { ...noteTypes, pinned: [...noteTypes.pinned, note] }

@@ -15,3 +15,6 @@
 .search-icon {
   color: var(--black);
 }
+.relative{
+  position: relative;
+}
