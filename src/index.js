@@ -11,6 +11,7 @@ import { EditProvider } from "./frontend/contexts/edit-context";
 import { AsideSelectedProvider } from "./frontend/contexts/aside-selected-context";
 import { ArchiveProvider } from "./frontend/contexts/archive-context";
 import { TrashProvider } from "./frontend/contexts/trash-context";
+import { FilterProvider } from "./frontend/contexts/filters-context";
 
 // Call make Server
 makeServer();
@@ -21,15 +22,17 @@ ReactDOM.render(
       <ThemeProvider>
         <AuthProvider>
           <NoteProvider>
-            <EditProvider>
-              <ArchiveProvider>
-                <TrashProvider>
-                  <AsideSelectedProvider>
-                    <App />
-                  </AsideSelectedProvider>
-                </TrashProvider>
-              </ArchiveProvider>
-            </EditProvider>
+            <FilterProvider>
+              <EditProvider>
+                <ArchiveProvider>
+                  <TrashProvider>
+                    <AsideSelectedProvider>
+                      <App />
+                    </AsideSelectedProvider>
+                  </TrashProvider>
+                </ArchiveProvider>
+              </EditProvider>
+            </FilterProvider>
           </NoteProvider>
         </AuthProvider>
       </ThemeProvider>

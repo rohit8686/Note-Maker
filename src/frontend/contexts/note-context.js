@@ -7,10 +7,6 @@ import { useAuth } from "./auth-context";
 const NoteContext = createContext();
 const useNote = () => useContext(NoteContext);
 
-const date = new Date().getDate();
-const month = new Date().getMonth();
-const year = new Date().getFullYear();
-
 function NoteProvider({ children }) {
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
@@ -24,7 +20,7 @@ function NoteProvider({ children }) {
     color: "#ffffff",
     label: "",
     pinned: false,
-    date: `${date}/${month + 1}/${year}`,
+    date: new Date().toLocaleString(),
   };
 
   const addNote = async () => {

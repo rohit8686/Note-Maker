@@ -2,10 +2,12 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import { useArchive } from "../../../contexts/archive-context";
 import { useEdit } from "../../../contexts/edit-context";
+import { useFilter } from "../../../contexts/filters-context";
 import { useNote } from "../../../contexts/note-context";
 
 export const Labels = () => {
   const { notes } = useNote();
+  const { filteredData } = useFilter();
   const {
     editState: { editId, editNotes, isEdit },
     editDispatch,
@@ -13,7 +15,7 @@ export const Labels = () => {
   } = useEdit();
   const { addToArchive } = useArchive();
 
-  const labelNotes = notes.reduce((labelTypes, note) => {
+  const labelNotes = filteredData.reduce((labelTypes, note) => {
     if (labelTypes[note.label]) {
       return { ...labelTypes, [note.label]: [...labelTypes[note.label], note] };
     } else {
@@ -25,7 +27,7 @@ export const Labels = () => {
   return (
     <div>
       <h1 className="flex pt-1">Labels</h1>
-      {notes.length ===0 && <h2 className="flex pt-1">No Notes are added</h2>}
+      {notes.length === 0 && <h2 className="flex pt-1">No Notes are added</h2>}
       {labelTypes.map((label, index) => {
         return (
           <div key={index}>

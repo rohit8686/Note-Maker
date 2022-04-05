@@ -1,0 +1,12 @@
+.filter{
+    position: absolute;
+    min-width: 200px;
+    width:fit-content;
+    top:35%;
+    right:5%;
+}
+.clear-filter{
+    letter-spacing: 1px;
+    font-weight: bold;
+    color:var(--primary-color);
+}

@@ -8,10 +8,6 @@ import { useNote } from "./note-context";
 const EditContext = createContext();
 const useEdit = () => useContext(EditContext);
 
-const date = new Date().getDate();
-const month = new Date().getMonth();
-const year = new Date().getFullYear();
-
 function EditProvider({ children }) {
   const navigate = useNavigate();
   const { setNotes } = useNote();
@@ -28,7 +24,7 @@ function EditProvider({ children }) {
       color: "",
       label: "",
       pinned: "",
-      date: `${date}/${month + 1}/${year}`,
+      date: new Date().toLocaleString(),
     },
   };
 
@@ -43,7 +39,7 @@ function EditProvider({ children }) {
         setNotes(res.data.notes);
         editDispatch({ type: "UPDATED_NOTE" });
         localStorage.setItem("userData", JSON.stringify(res.data));
-        toastContainer("Note updated successfully", "success");
+        toastContainer("Note updated", "info");
       } catch (e) {
         console.log("Note update error", e);
       }
@@ -92,7 +88,7 @@ function EditProvider({ children }) {
           ...editState,
           isEdit: true,
           editId: _id,
-          editNotes: editData,
+          editNotes: { ...editData, date: new Date().toLocaleString() },
         };
       case "UPDATED_NOTE":
         return {
