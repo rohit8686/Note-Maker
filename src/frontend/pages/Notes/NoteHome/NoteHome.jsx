@@ -8,6 +8,7 @@ import { Archive } from "../Archive/Archive";
 import { useAsideSelected } from "../../../contexts/aside-selected-context";
 import { Labels } from "../Labels/Labels";
 import { Trash } from "../Note/Trash/Trash";
+import { Profile } from "../Profile/Profile";
 
 export const NoteHome = () => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ export const NoteHome = () => {
         {asideSelected === "archive" && <Archive />}
         {asideSelected === "label" && <Labels />}
         {asideSelected === "trash" && <Trash />}
+        {asideSelected === "profile" && <Profile />}
       </div>
     </div>
   );
