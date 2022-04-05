@@ -3,9 +3,13 @@ import { useFilter } from "../../../contexts/filters-context";
 import { useNote } from "../../../contexts/note-context";
 import "./filters.css";
 
-export const Filters = () => {
+export const Filters = ({ setShowFilter }) => {
   const { notes } = useNote();
-  const { filterDispatch } = useFilter();
+  const {
+    filterState: { labels, sortBy },
+    filterDispatch,
+  } = useFilter();
+
   const labelNotes = notes.reduce((labelType, note) => {
     if (labelType[note.label]) {
       return {
@@ -20,7 +24,15 @@ export const Filters = () => {
 
   return (
     <div className="note filter mx-auto mt-2 p-1 text-color">
-      <h3 htmlFor="sortby">Sort by :</h3>
+      <div className="flex space-between">
+        <h3 htmlFor="sortby">Sort by :</h3>
+        <span
+          className="material-icons-outlined icon"
+          onClick={() => setShowFilter(false)}
+        >
+          close
+        </span>
+      </div>
       <select
         name="sort"
         id="sort"
@@ -29,8 +41,18 @@ export const Filters = () => {
           filterDispatch({ type: "SORT_BY", payload: e.target.value })
         }
       >
-        <option value="oldest-first">Oldest first</option>
-        <option value="newest-first">Newest first</option>
+        <option
+          value="oldest-first"
+          selected={`${sortBy === "oldest-first" ? "selected" : ""}`}
+        >
+          Oldest first
+        </option>
+        <option
+          value="newest-first"
+          selected={`${sortBy === "newest-first" ? "selected" : ""}`}
+        >
+          Newest first
+        </option>
       </select>
       <h3 className="pt-1">Labels :</h3>
 
@@ -44,12 +66,18 @@ export const Filters = () => {
               onChange={(e) =>
                 filterDispatch({ type: "LABEL", payload: label })
               }
+              checked={labels.some((filterLabel) => filterLabel === label)}
             />
             <label htmlFor={label}>{label}</label>
           </div>
         );
       })}
-      <p className="mt-2 clear-filter">Clear filters</p>
+      <p
+        className="mt-2 clear-filter pointer"
+        onClick={() => filterDispatch({ type: "CLEAR_FILTER" })}
+      >
+        Clear filters
+      </p>
     </div>
   );
 };

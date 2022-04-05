@@ -6,7 +6,7 @@ const useFilter = () => useContext(FilterContext);
 
 function FilterProvider({ children }) {
   const filterInitialState = {
-    sortBy: "",
+    sortBy: "oldest-first",
     labels: [],
     searchText: "",
   };
@@ -15,10 +15,6 @@ function FilterProvider({ children }) {
     filterInitialState
   );
   const { notes } = useNote();
-
-  useEffect(() => {
-    filterDispatch({ type: "FILTERED_DATA", payload: notes });
-  }, [notes]);
 
   const getSortData = (notes, sortBy) => {
     if (sortBy === "oldest-first") {
@@ -84,6 +80,8 @@ function FilterProvider({ children }) {
         return { ...filterState, sortBy: action.payload };
       case "SEARCH_TEXT":
         return { ...filterState, searchText: action.payload };
+      case "CLEAR_FILTER":
+        return { ...filterInitialState };
       default:
         return { ...filterState };
     }

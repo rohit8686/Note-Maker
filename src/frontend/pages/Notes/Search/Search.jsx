@@ -4,12 +4,12 @@ import { Filters } from "../Filters/Filters";
 import "./search.css";
 
 export const Search = () => {
-  const [showFilter, setShowFilter] = useState();
+  const [showFilter, setShowFilter] = useState(false);
   const {
     filterState: { searchText },
     filterDispatch,
   } = useFilter();
-  
+
   return (
     <div className="relative">
       <div className="search-input mx-auto flex gap space-between p-1">
@@ -33,7 +33,7 @@ export const Search = () => {
           filter_list
         </span>
       </div>
-      {showFilter && <Filters />}
+      {showFilter && <Filters setShowFilter={setShowFilter} />}
     </div>
   );
 };
