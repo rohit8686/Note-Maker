@@ -6,7 +6,6 @@ export const Profile = () => {
     authState: { userData },
     logout,
   } = useAuth();
-  console.log(userData);
 
   return (
     <div>
