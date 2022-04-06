@@ -1,6 +1,5 @@
 import { ToastContainer } from "react-toastify";
-import { useArchive } from "../../../contexts/archive-context";
-import { useEdit } from "../../../contexts/edit-context";
+import { useArchive, useEdit } from "../../../contexts/hooks-export";
 
 export const Archive = () => {
   const {

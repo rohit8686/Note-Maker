@@ -1,6 +1,5 @@
 import React from "react";
-import { useFilter } from "../../../contexts/filters-context";
-import { useNote } from "../../../contexts/note-context";
+import { useFilter,useNote } from "../../../contexts/hooks-export";
 import "./filters.css";
 
 export const Filters = ({ setShowFilter }) => {

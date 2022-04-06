@@ -1,5 +1,5 @@
 import React from "react";
-import { useTrash } from "../../../../contexts/trash-context";
+import { useTrash } from "../../../contexts/hooks-export";
 
 export const Trash = () => {
   const {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAsideSelected } from "../../../contexts/aside-selected-context";
+import { useAsideSelected } from "../../../contexts/hooks-export";
 import "./sidebar.css";
 
 export const Sidebar = () => {
