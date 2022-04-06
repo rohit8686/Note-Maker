@@ -65,13 +65,13 @@ function AuthProvider({ children }) {
         email: authState.email,
         password: authState.password,
       });
-      const { foundUser, encodedToken } = data;
-      if (status === 201) {
+      const { createdUser, encodedToken } = data;
+      if (status === 201 || status === 200) {
         localStorage.setItem("userToken", encodedToken);
-        localStorage.setItem("userData", JSON.stringify(foundUser));
+        localStorage.setItem("userData", JSON.stringify(createdUser));
         authDispatch({
           type: "USER_DATA",
-          payload: { foundUser, encodedToken },
+          payload: { createdUser, encodedToken },
         });
         authDispatch({ type: "RESET_FORM" });
         navigate("/notehome");

@@ -14,6 +14,7 @@ function TrashProvider({ children }) {
   const {
     authState: { encodedToken },
   } = useAuth();
+  const userData = JSON.parse(localStorage.getItem("userData"));
 
   const trashInitialState = {
     trashData: [],
@@ -28,7 +29,10 @@ function TrashProvider({ children }) {
         });
         setNotes(res.data.notes);
         trashDispatch({ type: "ADD_TO_TRASH", payload: noteToTrash });
-        localStorage.setItem("userData", JSON.stringify(res.data));
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({ ...userData, notes: res.data.notes })
+        );
         toastContainer("Note moved to trash", "warning");
       } catch (e) {
         console.log("Move to trash error", e);

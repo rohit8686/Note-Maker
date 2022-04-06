@@ -14,6 +14,7 @@ function EditProvider({ children }) {
   const {
     authState: { encodedToken },
   } = useAuth();
+  const userData = JSON.parse(localStorage.getItem("userData"));
 
   const editInitialState = {
     editId: "",
@@ -38,7 +39,10 @@ function EditProvider({ children }) {
         );
         setNotes(res.data.notes);
         editDispatch({ type: "UPDATED_NOTE" });
-        localStorage.setItem("userData", JSON.stringify(res.data));
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({ ...userData, notes: res.data.notes })
+        );
         toastContainer("Note updated", "info");
       } catch (e) {
         console.log("Note update error", e);

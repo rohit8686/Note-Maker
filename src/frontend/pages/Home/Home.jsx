@@ -14,9 +14,14 @@ export const Home = () => {
         Manage your daily tasks and workflow in a modern way and boost your
         efficiency without any efforts.
       </p>
-      <Link to="/signup" className="link">
-        <button className="flex btn join-btn mx-auto">Join Now</button>
-      </Link>
+      <div className="flex gap">
+        <Link to="/signup" className="link">
+          <button className="flex btn join-btn mx-auto">Join Now</button>
+        </Link>
+        <Link to="/notehome" className="link">
+          <button className="flex btn notes-btn mx-auto">Take Notes</button>
+        </Link>
+      </div>
       <Link to="/login" className="link">
         <p className="signin-btn flex p-1">Already have an account ?</p>
       </Link>
