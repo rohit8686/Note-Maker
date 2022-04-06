@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useFilter } from "../../../contexts/filters-context";
+import { useFilter } from "../../../contexts/hooks-export";
 import { Filters } from "../Filters/Filters";
 import "./search.css";
 

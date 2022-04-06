@@ -1,9 +1,11 @@
 import { ToastContainer } from "react-toastify";
-import { useArchive } from "../../../contexts/archive-context";
-import { useEdit } from "../../../contexts/edit-context";
-import { useFilter } from "../../../contexts/filters-context";
-import { useNote } from "../../../contexts/note-context";
-import { useTrash } from "../../../contexts/trash-context";
+import {
+  useArchive,
+  useEdit,
+  useFilter,
+  useTrash,
+  useNote,
+} from "../../../contexts/hooks-export";
 import "./note.css";
 
 export const Note = () => {
@@ -200,7 +202,9 @@ export const Note = () => {
                         }
                         disabled={`${isEdit ? "" : "disabled"}`}
                       />
-                      <p className={`label mb-1 ${isEdit ? "hide" : ""}`}>{label}</p>
+                      <p className={`label mb-1 ${isEdit ? "hide" : ""}`}>
+                        {label}
+                      </p>
 
                       <small>Created : {date}</small>
 

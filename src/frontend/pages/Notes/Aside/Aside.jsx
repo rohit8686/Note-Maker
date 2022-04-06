@@ -1,6 +1,6 @@
 import React from "react";
 import "./aside.css";
-import { useAsideSelected } from "../../../contexts/aside-selected-context";
+import { useAsideSelected } from "../../../contexts/hooks-export";
 
 export const Aside = () => {
   const { asideSelected, setAsideSelected } = useAsideSelected();
