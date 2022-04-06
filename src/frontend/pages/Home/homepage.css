@@ -31,7 +31,7 @@
   .hero-desc {
     width: 60%;
   }
-  .join-btn {
+  .join-btn,.notes-btn {
     font-size: 1.3rem;
   }
   .signin-btn {

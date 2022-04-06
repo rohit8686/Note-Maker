@@ -184,61 +184,77 @@ export const Note = () => {
                         }
                         disabled={`${isEdit ? "" : "disabled"}`}
                       ></textarea>
-                      <p className="label ">{label}</p>
-                      <div className="flex space-between mt-1">
-                        <small>Created : {date}</small>
-                        <div className="flex gap">
-                          <input
-                            type="color"
-                            name="color"
-                            id="color"
-                            required
-                            value={
-                              isEdit && _id === editId ? editNotes.color : color
-                            }
-                            onChange={(e) =>
-                              isEdit
-                                ? editDispatch({
-                                    type: "ADD_COLOR",
-                                    payload: e.target.value,
-                                  })
-                                : ""
-                            }
-                          />
-                          <span
-                            className="material-icons-outlined icon"
-                            onClick={() => addToArchive(_id)}
-                          >
-                            archive
-                          </span>
-                          <span
-                            className="material-icons-outlined icon"
-                            onClick={() => moveToTrash(_id)}
-                          >
-                            delete
-                          </span>
-                          <button
-                            className={`btn note-btn ${
-                              isEdit && _id === editId ? "hide" : ""
-                            }`}
-                            onClick={() =>
-                              editDispatch({
-                                type: "EDIT_NOTE",
-                                payload: { _id, notes },
-                              })
-                            }
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className={`btn note-btn ${
-                              isEdit && _id === editId ? "" : "hide"
-                            }`}
-                            onClick={() => updateNote(_id)}
-                          >
-                            Update
-                          </button>
-                        </div>
+
+                      <input
+                        className={`label-input full-width mb-1 ${
+                          isEdit ? "" : "hide"
+                        }`}
+                        value={
+                          isEdit && _id === editId ? editNotes.label : label
+                        }
+                        onChange={(e) =>
+                          editDispatch({
+                            type: "ADD_LABEL",
+                            payload: e.target.value,
+                          })
+                        }
+                        disabled={`${isEdit ? "" : "disabled"}`}
+                      />
+                      <p className={`label mb-1 ${isEdit ? "hide" : ""}`}>{label}</p>
+
+                      <small>Created : {date}</small>
+
+                      <div className="flex flex-end gap mt-1">
+                        <input
+                          type="color"
+                          name="color"
+                          id="color"
+                          required
+                          value={
+                            isEdit && _id === editId ? editNotes.color : color
+                          }
+                          onChange={(e) =>
+                            isEdit
+                              ? editDispatch({
+                                  type: "ADD_COLOR",
+                                  payload: e.target.value,
+                                })
+                              : ""
+                          }
+                        />
+                        <span
+                          className="material-icons-outlined icon"
+                          onClick={() => addToArchive(_id)}
+                        >
+                          archive
+                        </span>
+                        <span
+                          className="material-icons-outlined icon"
+                          onClick={() => moveToTrash(_id)}
+                        >
+                          delete
+                        </span>
+                        <button
+                          className={`btn note-btn ${
+                            isEdit && _id === editId ? "hide" : ""
+                          }`}
+                          onClick={() =>
+                            editDispatch({
+                              type: "EDIT_NOTE",
+                              payload: { _id, notes },
+                            })
+                          }
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className={`btn note-btn ${
+                            isEdit && _id === editId ? "" : "hide"
+                          }`}
+                          onClick={() => updateNote(_id)}
+                        >
+                          Update
+                        </button>
                       </div>
                     </div>
                   );

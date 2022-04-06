@@ -13,6 +13,7 @@ function NoteProvider({ children }) {
   const {
     authState: { encodedToken },
   } = useAuth();
+  const userData = JSON.parse(localStorage.getItem("userData"));
 
   const noteInitialState = {
     title: "",
@@ -33,8 +34,11 @@ function NoteProvider({ children }) {
         );
         setNotes(res.data.notes);
         noteDispatch({ type: "CLEAR_FORM" });
-        localStorage.setItem("userData", JSON.stringify(res.data));
-        toastContainer("Note added successfully", "success");
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({ ...userData, notes: res.data.notes })
+        );
+        toastContainer("Note added", "success");
       } catch (e) {
         console.log("Error in adding note ", e);
       }

@@ -16,6 +16,7 @@ function ArchiveProvider({ children }) {
     authState: { encodedToken },
   } = useAuth();
   const { editState, editDispatch } = useEdit();
+  const userData = JSON.parse(localStorage.getItem("userData"));
 
   const archiveInitialState = {
     archiveData: [],
@@ -32,8 +33,15 @@ function ArchiveProvider({ children }) {
         );
         setNotes(res.data.notes);
         archiveDispatch({ type: "ARCHIVE_DATA", payload: res.data.archives });
-        localStorage.setItem("userData", JSON.stringify(res.data));
-        toastContainer("Note archived successfully", "success");
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            ...userData,
+            archives: res.data.archives,
+            notes: res.data.notes,
+          })
+        );
+        toastContainer("Note archived", "success");
       } catch (e) {
         console.log("Note archive error", e);
       }
@@ -54,8 +62,14 @@ function ArchiveProvider({ children }) {
         setNotes(res.data.notes);
         editDispatch({ type: "UPDATED_NOTE" });
         archiveDispatch({ type: "ARCHIVE_DATA", payload: res.data.archives });
-        localStorage.setItem("userData", JSON.stringify(res.data));
-        toastContainer("Note updated successfully", "success");
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            ...userData,
+            archives: res.data.archives,
+          })
+        );
+        toastContainer("Note updated", "info");
       } catch (e) {
         console.log("Note update error", e);
       }
@@ -76,8 +90,15 @@ function ArchiveProvider({ children }) {
         );
         setNotes(res.data.notes);
         archiveDispatch({ type: "ARCHIVE_DATA", payload: res.data.archives });
-        localStorage.setItem("userData", JSON.stringify(res.data));
-        toastContainer("Note restored successfully", "success");
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            ...userData,
+            notes: res.data.notes,
+            archives: res.data.archives,
+          })
+        );
+        toastContainer("Note restored", "success");
       } catch (e) {
         console.log("Note restore error", e);
       }
@@ -93,10 +114,12 @@ function ArchiveProvider({ children }) {
         const res = await axios.delete(`/api/archives/delete/${_id}`, {
           headers: { authorization: encodedToken },
         });
-        setNotes([]);
         archiveDispatch({ type: "ARCHIVE_DATA", payload: res.data.archives });
-        localStorage.setItem("userData", JSON.stringify(res.data));
-        toastContainer("Note deleted successfully", "warning");
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({ ...userData, archives: res.data.archives })
+        );
+        toastContainer("Note deleted", "warning");
       } catch (e) {
         console.log("Note delete error", e);
       }

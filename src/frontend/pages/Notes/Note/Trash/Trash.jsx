@@ -10,6 +10,7 @@ export const Trash = () => {
     <div>
       <h1 className="flex pt-1">Trash</h1>
       <div className="flex gap">
+        {trashData.length === 0 && <h2 className="pt-1">No notes in trash</h2>}
         {trashData &&
           trashData.map(({ _id, color, title, body, label, date, pinned }) => {
             return (
