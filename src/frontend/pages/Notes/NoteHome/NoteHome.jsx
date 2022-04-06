@@ -5,9 +5,9 @@ import "./notehome.css";
 import { useNavigate } from "react-router-dom";
 import { Aside } from "../Aside/Aside";
 import { Archive } from "../Archive/Archive";
-import { useAsideSelected } from "../../../contexts/aside-selected-context";
+import { useAsideSelected } from "../../../contexts/hooks-export";
 import { Labels } from "../Labels/Labels";
-import { Trash } from "../Note/Trash/Trash";
+import { Trash } from "../Trash/Trash";
 import { Profile } from "../Profile/Profile";
 
 export const NoteHome = () => {

@@ -1,10 +1,8 @@
 import axios from "axios";
 import { React, createContext, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-import { toastContainer } from "../Toast/toast";
-import { useAuth } from "./auth-context";
-import { useEdit } from "./edit-context";
-import { useNote } from "./note-context";
+import { toastContainer } from "../toast/toast";
+import { useAuth, useEdit, useNote } from "./hooks-export";
 
 const ArchiveContext = createContext();
 const useArchive = () => useContext(ArchiveContext);

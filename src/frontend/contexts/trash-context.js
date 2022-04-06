@@ -1,9 +1,8 @@
 import axios from "axios";
 import { React, createContext, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-import { toastContainer } from "../Toast/toast";
-import { useAuth } from "./auth-context";
-import { useNote } from "./note-context";
+import { toastContainer } from "../toast/toast";
+import { useAuth, useNote } from "./hooks-export";
 
 const TrashContext = createContext();
 const useTrash = () => useContext(TrashContext);

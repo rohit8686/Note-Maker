@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./navbar.css";
-import { useTheme } from "../contexts/theme-context";
+import { useTheme } from "../contexts/hooks-export";
 import { Link } from "react-router-dom";
 import { Sidebar } from "../pages/Notes/Sidebar/Sidebar";
 

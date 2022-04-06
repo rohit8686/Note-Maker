@@ -1,10 +1,12 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import { useArchive } from "../../../contexts/archive-context";
-import { useEdit } from "../../../contexts/edit-context";
-import { useFilter } from "../../../contexts/filters-context";
-import { useNote } from "../../../contexts/note-context";
-import { useTrash } from "../../../contexts/trash-context";
+import {
+  useArchive,
+  useEdit,
+  useFilter,
+  useNote,
+  useTrash,
+} from "../../../contexts/hooks-export";
 
 export const Labels = () => {
   const { notes } = useNote();

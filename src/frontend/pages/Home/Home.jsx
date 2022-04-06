@@ -19,7 +19,7 @@ export const Home = () => {
           <button className="flex btn join-btn mx-auto">Join Now</button>
         </Link>
         <Link to="/notehome" className="link">
-          <button className="flex btn notes-btn mx-auto">Take Notes</button>
+          <button className="flex btn notes-btn mx-auto">Make Notes</button>
         </Link>
       </div>
       <Link to="/login" className="link">

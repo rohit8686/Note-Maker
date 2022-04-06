@@ -1,5 +1,5 @@
 import { React, createContext, useContext, useReducer } from "react";
-import { useNote } from "./note-context";
+import { useNote } from "./hooks-export";
 
 const FilterContext = createContext();
 const useFilter = () => useContext(FilterContext);
