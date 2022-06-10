@@ -2,6 +2,7 @@ import React from "react";
 import hero from "../../images/hero.svg";
 import "./homepage.css";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 export const Home = () => {
   return (
@@ -25,6 +26,7 @@ export const Home = () => {
       <Link to="/login" className="link">
         <p className="signin-btn flex p-1">Already have an account ?</p>
       </Link>
+      <ToastContainer />
     </div>
   );
 };

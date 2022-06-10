@@ -43,6 +43,22 @@ function TrashProvider({ children }) {
     }
   };
 
+  const deleteFromTrash = async (_id) => {
+    if (encodedToken) {
+      const modifiedTrashData = trashState.trashData.filter(
+        (item) => item._id !== _id
+      );
+      trashDispatch({
+        type: "REMOVE_FROM_TRASH",
+        payload: modifiedTrashData,
+      });
+      toastContainer("Note deleted permanently", "error");
+    } else {
+      toastContainer("Login to add notes", "error");
+      setTimeout(() => navigate("/login"), 4000);
+    }
+  };
+
   function trashReducerFn(trashState, action) {
     switch (action.type) {
       case "ADD_TO_TRASH":
@@ -50,6 +66,8 @@ function TrashProvider({ children }) {
           ...trashState,
           trashData: [...trashState.trashData, action.payload],
         };
+      case "REMOVE_FROM_TRASH":
+        return { ...trashState, trashData: action.payload };
       default:
         return { ...trashState };
     }
@@ -65,6 +83,7 @@ function TrashProvider({ children }) {
         trashState,
         trashDispatch,
         moveToTrash,
+        deleteFromTrash,
       }}
     >
       {children}

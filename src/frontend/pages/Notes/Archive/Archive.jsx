@@ -15,7 +15,7 @@ export const Archive = () => {
 
   return (
     <div>
-      <h1 className="flex pt-1">Archived</h1>
+      <h1 className="flex">Archived</h1>
       {archiveData.length === 0 && (
         <h2 className="flex pt-1">No archived notes</h2>
       )}
@@ -46,7 +46,7 @@ export const Archive = () => {
                           payload: e.target.value,
                         })
                       }
-                      disabled={`${isEdit ? "" : "disabled"}`}
+                      disabled={`${isEdit && _id === editId ? "" : "disabled"}`}
                     />
                     <span
                       className={`${
@@ -76,17 +76,38 @@ export const Archive = () => {
                         payload: e.target.value,
                       })
                     }
-                    disabled={`${isEdit ? "" : "disabled"}`}
+                    disabled={`${isEdit && _id === editId ? "" : "disabled"}`}
                   ></textarea>
-                  <p className="label ">{label}</p>
-                  <div className="flex space-between mt-1">
-                    <small>Created : {date}</small>
-                    <div className="flex gap">
+                  <input
+                    className={`label-input full-width mb-1 ${
+                      isEdit ? "" : "hide"
+                    }`}
+                    value={isEdit && _id === editId ? editNotes.label : label}
+                    onChange={(e) =>
+                      editDispatch({
+                        type: "ADD_LABEL",
+                        payload: e.target.value,
+                      })
+                    }
+                    disabled={`${isEdit && _id === editId ? "" : "disabled"}`}
+                  />
+                  <p className={`label mb-1 ${isEdit ? "hide" : ""}`}>
+                    <abbr title="Label" className="flex label-abbr">
+                      <span className="material-icons-outlined">
+                        label_important
+                      </span>
+                      <h3>{label}</h3>
+                    </abbr>
+                  </p>
+
+                  <small>Created : {date}</small>
+                  <div className="flex flex-end mt-1 gap">
+                    <label htmlFor="color" className="relative">
                       <input
+                        className="color-input"
                         type="color"
                         name="color"
                         id="color"
-                        required
                         value={
                           isEdit && _id === editId ? editNotes.color : color
                         }
@@ -99,40 +120,43 @@ export const Archive = () => {
                             : ""
                         }
                       />
-                      <span
-                        className="material-icons-outlined icon"
-                        onClick={() => restoreFromArchive(_id)}
-                      >
-                        unarchive
+                      <span className="material-icons-outlined palette-icon">
+                        palette
                       </span>
-                      <span
-                        className="material-icons-outlined icon"
-                        onClick={() => deleteFromArchive(_id)}
-                      >
-                        delete
-                      </span>
-                      <button
-                        className={`btn note-btn ${
-                          isEdit && _id === editId ? "hide" : ""
-                        }`}
-                        onClick={() =>
-                          editDispatch({
-                            type: "EDIT_NOTE",
-                            payload: { _id, archiveData },
-                          })
-                        }
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className={`btn note-btn ${
-                          isEdit && _id === editId ? "" : "hide"
-                        }`}
-                        onClick={() => updateArchiveNote(_id)}
-                      >
-                        Update
-                      </button>
-                    </div>
+                    </label>
+                    <span
+                      className="material-icons-outlined icon"
+                      onClick={() => restoreFromArchive(_id)}
+                    >
+                      unarchive
+                    </span>
+                    <span
+                      className="material-icons-outlined icon"
+                      onClick={() => deleteFromArchive(_id)}
+                    >
+                      delete
+                    </span>
+                    <button
+                      className={`btn note-btn ${
+                        isEdit && _id === editId ? "hide" : ""
+                      }`}
+                      onClick={() =>
+                        editDispatch({
+                          type: "EDIT_NOTE",
+                          payload: { _id, archiveData },
+                        })
+                      }
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className={`btn note-btn ${
+                        isEdit && _id === editId ? "" : "hide"
+                      }`}
+                      onClick={() => updateArchiveNote(_id)}
+                    >
+                      Update
+                    </button>
                   </div>
                 </div>
               );

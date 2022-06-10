@@ -7,6 +7,7 @@ import {
   useNote,
   useTrash,
 } from "../../../contexts/hooks-export";
+import { Search } from "../Search/Search";
 
 export const Labels = () => {
   const { notes } = useNote();
@@ -30,12 +31,13 @@ export const Labels = () => {
 
   return (
     <div>
+      <Search />
       <h1 className="flex pt-1">Labels</h1>
       {notes.length === 0 && <h2 className="flex pt-1">No Notes are added</h2>}
       {labelTypes.map((label, index) => {
         return (
           <div key={index}>
-            <h1 className="flex pt-1 text-capitalize">{label}</h1>
+            <h1 className="flex pt-1">{label}</h1>
             <div className="flex gap">
               {labelNotes[label].map(
                 ({ _id, color, title, body, label, date, pinned }) => {
@@ -64,7 +66,9 @@ export const Labels = () => {
                               payload: e.target.value,
                             })
                           }
-                          disabled={`${isEdit ? "" : "disabled"}`}
+                          disabled={`${
+                            isEdit && _id === editId ? "" : "disabled"
+                          }`}
                         />
                         <span
                           className={`${
@@ -98,7 +102,9 @@ export const Labels = () => {
                             payload: e.target.value,
                           })
                         }
-                        disabled={`${isEdit ? "" : "disabled"}`}
+                        disabled={`${
+                          isEdit && _id === editId ? "" : "disabled"
+                        }`}
                       ></textarea>
                       <input
                         className={`label-input full-width mb-1 ${
@@ -113,31 +119,43 @@ export const Labels = () => {
                             payload: e.target.value,
                           })
                         }
-                        disabled={`${isEdit ? "" : "disabled"}`}
+                        disabled={`${
+                          isEdit && _id === editId ? "" : "disabled"
+                        }`}
                       />
                       <p className={`label mb-1 ${isEdit ? "hide" : ""}`}>
-                        {label}
+                        <abbr title="Label" className="flex label-abbr">
+                          <span className="material-icons-outlined">
+                            label_important
+                          </span>{" "}
+                          <h3>{label}</h3>
+                        </abbr>
                       </p>
 
                       <small>Created : {date}</small>
                       <div className="flex flex-end gap mt-1">
-                        <input
-                          type="color"
-                          name="color"
-                          id="color"
-                          required
-                          value={
-                            isEdit && _id === editId ? editNotes.color : color
-                          }
-                          onChange={(e) =>
-                            isEdit
-                              ? editDispatch({
-                                  type: "ADD_COLOR",
-                                  payload: e.target.value,
-                                })
-                              : ""
-                          }
-                        />
+                        <label htmlFor="color" className="relative">
+                          <input
+                            className="color-input"
+                            type="color"
+                            name="color"
+                            id="color"
+                            value={
+                              isEdit && _id === editId ? editNotes.color : color
+                            }
+                            onChange={(e) =>
+                              isEdit
+                                ? editDispatch({
+                                    type: "ADD_COLOR",
+                                    payload: e.target.value,
+                                  })
+                                : ""
+                            }
+                          />
+                          <span className="material-icons-outlined palette-icon">
+                            palette
+                          </span>
+                        </label>
                         <span
                           className="material-icons-outlined icon"
                           onClick={() => addToArchive(_id)}

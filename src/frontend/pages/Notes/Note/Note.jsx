@@ -1,4 +1,5 @@
 import { ToastContainer } from "react-toastify";
+import { useState } from "react";
 import {
   useArchive,
   useEdit,
@@ -7,8 +8,11 @@ import {
   useNote,
 } from "../../../contexts/hooks-export";
 import "./note.css";
+import { toastContainer } from "../../../Toast/toast";
+import { Search } from "../Search/Search";
 
 export const Note = () => {
+  const [showNote, setShowNote] = useState(false);
   const {
     noteState: { title, body, color, pinned, label },
     noteDispatch,
@@ -35,86 +39,127 @@ export const Note = () => {
 
   return (
     <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addNote();
-        }}
-        className="note mx-auto mt-2 p-1 text-color"
-        style={{ backgroundColor: `${color}` }}
+      <Search />
+      <div
+        className={`flex mt-2 note create-note mx-auto relative ${
+          showNote ? "hide" : ""
+        }`}
       >
-        <div className="flex space-between">
-          <input
-            type="text"
-            placeholder="Title"
-            className="note-title pl-1"
-            required
-            value={title}
-            onChange={(e) =>
-              noteDispatch({
-                type: "ADD_TITLE",
-                payload: e.target.value,
-              })
-            }
-          />
-          <span
-            className={`${
-              pinned ? "material-icons" : "material-icons-outlined"
-            } span icon`}
-            onClick={() => noteDispatch({ type: "PINNED" })}
-          >
-            push_pin
-          </span>
-        </div>
-        <textarea
-          name="note-body"
-          id="note-body"
-          cols="30"
-          rows="5"
-          placeholder="Body of note"
-          className="note-body"
-          required
-          value={body}
-          onChange={(e) =>
-            noteDispatch({
-              type: "ADD_BODY",
-              payload: e.target.value,
-            })
-          }
-        ></textarea>
         <input
           type="text"
-          placeholder="Label"
-          className="note-label pl-1"
-          required
-          value={label}
-          onChange={(e) =>
-            noteDispatch({
-              type: "ADD_LABEL",
-              payload: e.target.value,
-            })
-          }
+          name="note"
+          id="note"
+          className="input p-1"
+          placeholder="Create a note"
+          onFocus={() => setShowNote(true)}
         />
-        <div className="flex flex-end mt-1">
-          <div className="flex gap">
+        <span
+          className="material-icons-outlined add-note-icon"
+          onClick={() => setShowNote(true)}
+        >
+          add_circle
+        </span>
+      </div>
+      {showNote && (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (title.trim() && body.trim() && label.trim()) {
+              addNote();
+              setShowNote(false);
+            } else {
+              noteDispatch({ type: "CLEAR_FORM" });
+              toastContainer("Fields cannot be empty", "error");
+            }
+          }}
+          className="note mx-auto mt-2 p-1 text-color"
+          style={{ backgroundColor: "#FFF" }}
+        >
+          <div className="flex space-between">
             <input
-              type="color"
-              name="color"
-              id="color"
+              type="text"
+              placeholder="Title"
+              className="note-title pl-1"
               required
-              value={color}
+              value={title}
               onChange={(e) =>
                 noteDispatch({
-                  type: "ADD_COLOR",
+                  type: "ADD_TITLE",
                   payload: e.target.value,
                 })
               }
             />
-            <button className="btn note-btn">Add Note</button>
+            <div>
+              <span
+                className={`${
+                  pinned ? "material-icons" : "material-icons-outlined"
+                } span icon`}
+                onClick={() => noteDispatch({ type: "PINNED" })}
+              >
+                push_pin
+              </span>
+              <span
+                className="material-icons-outlined span icon"
+                onClick={() => setShowNote(false)}
+              >
+                close
+              </span>
+            </div>
           </div>
-        </div>
-        <ToastContainer />
-      </form>
+          <textarea
+            name="note-body"
+            id="note-body"
+            cols="30"
+            rows="5"
+            placeholder="Body of note"
+            className="note-body"
+            required
+            value={body}
+            onChange={(e) =>
+              noteDispatch({
+                type: "ADD_BODY",
+                payload: e.target.value,
+              })
+            }
+          ></textarea>
+          <input
+            type="text"
+            placeholder="Label"
+            className="note-label pl-1"
+            required
+            value={label}
+            onChange={(e) =>
+              noteDispatch({
+                type: "ADD_LABEL",
+                payload: e.target.value,
+              })
+            }
+          />
+          <div className="flex flex-end mt-1">
+            <div className="flex gap">
+              <label htmlFor="color" className="relative">
+                <input
+                  className="color-input"
+                  type="color"
+                  name="color"
+                  id="color"
+                  value={color}
+                  onChange={(e) =>
+                    noteDispatch({
+                      type: "ADD_COLOR",
+                      payload: e.target.value,
+                    })
+                  }
+                />
+                <span className="material-icons-outlined palette-icon">
+                  palette
+                </span>
+              </label>
+              <button className="btn note-btn">Add Note</button>
+            </div>
+          </div>
+        </form>
+      )}
 
       {noteTypes.map((type, index) => {
         return (
@@ -128,7 +173,7 @@ export const Note = () => {
                   return (
                     <div
                       key={_id}
-                      className="note small-note mt-2 p-1 text-color"
+                      className="note small-note mt-1 p-1 text-color"
                       style={{
                         backgroundColor: `${
                           isEdit && _id === editId ? editNotes.color : color
@@ -150,7 +195,9 @@ export const Note = () => {
                               payload: e.target.value,
                             })
                           }
-                          disabled={`${isEdit ? "" : "disabled"}`}
+                          disabled={`${
+                            isEdit && _id === editId ? "" : "disabled"
+                          }`}
                         />
                         <span
                           className={`${
@@ -184,7 +231,9 @@ export const Note = () => {
                             payload: e.target.value,
                           })
                         }
-                        disabled={`${isEdit ? "" : "disabled"}`}
+                        disabled={`${
+                          isEdit && _id === editId ? "" : "disabled"
+                        }`}
                       ></textarea>
 
                       <input
@@ -200,32 +249,44 @@ export const Note = () => {
                             payload: e.target.value,
                           })
                         }
-                        disabled={`${isEdit ? "" : "disabled"}`}
+                        disabled={`${
+                          isEdit && _id === editId ? "" : "disabled"
+                        }`}
                       />
                       <p className={`label mb-1 ${isEdit ? "hide" : ""}`}>
-                        {label}
+                        <abbr title="Label" className="flex label-abbr">
+                          <span className="material-icons-outlined">
+                            label_important
+                          </span>{" "}
+                          <h3>{label}</h3>
+                        </abbr>
                       </p>
 
                       <small>Created : {date}</small>
 
                       <div className="flex flex-end gap mt-1">
-                        <input
-                          type="color"
-                          name="color"
-                          id="color"
-                          required
-                          value={
-                            isEdit && _id === editId ? editNotes.color : color
-                          }
-                          onChange={(e) =>
-                            isEdit
-                              ? editDispatch({
-                                  type: "ADD_COLOR",
-                                  payload: e.target.value,
-                                })
-                              : ""
-                          }
-                        />
+                        <label htmlFor="color" className="relative">
+                          <input
+                            className="color-input"
+                            type="color"
+                            name="color"
+                            id="color"
+                            value={
+                              isEdit && _id === editId ? editNotes.color : color
+                            }
+                            onChange={(e) =>
+                              isEdit
+                                ? editDispatch({
+                                    type: "ADD_COLOR",
+                                    payload: e.target.value,
+                                  })
+                                : ""
+                            }
+                          />
+                          <span className="material-icons-outlined palette-icon">
+                            palette
+                          </span>
+                        </label>
                         <span
                           className="material-icons-outlined icon"
                           onClick={() => addToArchive(_id)}
@@ -268,6 +329,7 @@ export const Note = () => {
           </div>
         );
       })}
+      <ToastContainer />
     </div>
   );
 };
