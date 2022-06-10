@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Note } from "../Note/Note";
-import { Search } from "../Search/Search";
 import "./notehome.css";
 import { useNavigate } from "react-router-dom";
 import { Aside } from "../Aside/Aside";
