@@ -1,14 +1,19 @@
 import React from "react";
-import { useTrash } from "../../../contexts/hooks-export";
+import { ToastContainer } from "react-toastify";
+import { useTrash, useEdit } from "../../../contexts/hooks-export";
 
 export const Trash = () => {
   const {
     trashState: { trashData },
+    deleteFromTrash,
   } = useTrash();
+  const {
+    editState: { isEdit },
+  } = useEdit();
 
   return (
     <div>
-      <h1 className="flex pt-1">Trash</h1>
+      <h1 className="flex">Trash</h1>
       <div className="flex gap">
         {trashData.length === 0 && <h2 className="pt-1">No notes in trash</h2>}
         {trashData &&
@@ -49,15 +54,28 @@ export const Trash = () => {
                   value={body}
                   disabled="disabled"
                 ></textarea>
-                <p className="label ">{label}</p>
+                <p className={`label mb-1 ${isEdit ? "hide" : ""}`}>
+                  <abbr title="Label" className="flex label-abbr">
+                    <span className="material-icons-outlined">
+                      label_important
+                    </span>
+                    <h3>{label}</h3>
+                  </abbr>
+                </p>
                 <div className="flex space-between mt-1">
                   <small>Created : {date}</small>
-                  <button className="btn note-btn">Restore</button>
+                  <button
+                    className="btn note-btn"
+                    onClick={() => deleteFromTrash(_id)}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             );
           })}
       </div>
+      <ToastContainer />
     </div>
   );
 };

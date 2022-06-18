@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import { useAuth } from "../../../contexts/hooks-export";
 
 export const Profile = () => {
@@ -10,6 +11,7 @@ export const Profile = () => {
       <button className="btn flex mx-auto" onClick={logout}>
         Logout
       </button>
+      <ToastContainer />
     </div>
   );
 };

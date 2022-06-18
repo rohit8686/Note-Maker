@@ -1,6 +1,7 @@
 import { React, createContext, useContext, useReducer, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toastContainer } from "../Toast/toast";
 
 const AuthContext = createContext();
 const useAuth = () => useContext(AuthContext);
@@ -37,6 +38,7 @@ function AuthProvider({ children }) {
           payload: { foundUser, encodedToken },
         });
         authDispatch({ type: "RESET_FORM" });
+        setTimeout(() => toastContainer("Login successfull !", "success"), 300);
         navigate("/notehome");
       } else if (status === 201) {
         authDispatch({ type: "ERROR", payload: "Incorrect password" });
@@ -56,6 +58,7 @@ function AuthProvider({ children }) {
     localStorage.removeItem("userToken");
     localStorage.removeItem("userData");
     authDispatch({ type: "CLEAR_AUTH_DATA" });
+    setTimeout(() => toastContainer("Logged out !", "error"), 300);
     navigate("/");
   };
 
@@ -74,6 +77,10 @@ function AuthProvider({ children }) {
           payload: { createdUser, encodedToken },
         });
         authDispatch({ type: "RESET_FORM" });
+        setTimeout(
+          () => toastContainer("Signin successfull !", "success"),
+          300
+        );
         navigate("/notehome");
       }
     } catch (e) {

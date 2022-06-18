@@ -18,7 +18,7 @@ function NoteProvider({ children }) {
   const noteInitialState = {
     title: "",
     body: "",
-    color: "#ffffff",
+    color: "#B1C4F2",
     label: "",
     pinned: false,
     date: new Date().toLocaleString(),

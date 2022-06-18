@@ -1,5 +1,5 @@
 import React from "react";
-import { useFilter,useNote } from "../../../contexts/hooks-export";
+import { useFilter, useNote } from "../../../contexts/hooks-export";
 import "./filters.css";
 
 export const Filters = ({ setShowFilter }) => {
@@ -55,22 +55,26 @@ export const Filters = ({ setShowFilter }) => {
       </select>
       <h3 className="pt-1">Labels :</h3>
 
-      {labelTypes.map((label, index) => {
-        return (
-          <div className="flex gap flex-start pt-1" key={index}>
-            <input
-              type="checkbox"
-              name={label}
-              id={label}
-              onChange={(e) =>
-                filterDispatch({ type: "LABEL", payload: label })
-              }
-              checked={labels.some((filterLabel) => filterLabel === label)}
-            />
-            <label htmlFor={label}>{label}</label>
-          </div>
-        );
-      })}
+      {labelTypes.length === 0 ? (
+        <p className="pt-1">No Labels</p>
+      ) : (
+        labelTypes.map((label, index) => {
+          return (
+            <div className="flex gap flex-start pt-1" key={index}>
+              <input
+                type="checkbox"
+                name={label}
+                id={label}
+                onChange={(e) =>
+                  filterDispatch({ type: "LABEL", payload: label })
+                }
+                checked={labels.some((filterLabel) => filterLabel === label)}
+              />
+              <label htmlFor={label}>{label}</label>
+            </div>
+          );
+        })
+      )}
       <p
         className="mt-2 clear-filter pointer"
         onClick={() => filterDispatch({ type: "CLEAR_FILTER" })}

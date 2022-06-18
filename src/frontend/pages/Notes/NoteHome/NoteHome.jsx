@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Note } from "../Note/Note";
-import { Search } from "../Search/Search";
 import "./notehome.css";
 import { useNavigate } from "react-router-dom";
 import { Aside } from "../Aside/Aside";
@@ -23,7 +22,6 @@ export const NoteHome = () => {
     <div className="p-1 notehome-flex space-between">
       <Aside />
       <div className="note-width">
-        <Search />
         {asideSelected === "note-home" && <Note />}
         {asideSelected === "archive" && <Archive />}
         {asideSelected === "label" && <Labels />}

@@ -35,9 +35,6 @@ export const Login = () => {
                 });
               }}
             />
-            {!authState.email && (
-              <p className="input-error">Please enter email address</p>
-            )}
           </div>
           <div className="pt-1">
             <label htmlFor="password">Password</label>
@@ -58,9 +55,6 @@ export const Login = () => {
                 authDispatch({ type: "PASSWORD", payload: e.target.value });
               }}
             />
-            {!authState.password && (
-              <p className="input-error">Please enter password</p>
-            )}
           </div>
           <div className="pt-1 pb-1 flex flex-start small-gap">
             <input type="checkbox" name="checkbox" id="checkbox" />
@@ -73,12 +67,12 @@ export const Login = () => {
           </div>
           <button className="btn login-btn full-width">Login</button>
           &nbsp;
-          <p
+          <button
             className="flex outline-btn full-width"
             onClick={() => authDispatch({ type: "TEST_CREDENTIALS" })}
           >
             Login with test credentials
-          </p>
+          </button>
           <h3 className="flex pt-1 input-error">{authState.errorMsg}</h3>
           <Link to="/signup" className="link signup-link">
             <div className="flex">
